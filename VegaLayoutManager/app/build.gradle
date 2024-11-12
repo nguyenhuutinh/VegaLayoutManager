@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33 // Updated for modern compatibility
+    compileSdkVersion 34 // Updated for modern compatibility
     defaultConfig {
         applicationId "com.stone.vega"
         minSdkVersion 14
-        targetSdkVersion 33 // Updated for modern compatibility
+        targetSdkVersion 34 // Updated for modern compatibility
         versionCode 1
         versionName "1.0"
     }
