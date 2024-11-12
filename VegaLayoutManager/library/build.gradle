@@ -1,7 +1,5 @@
-plugins {
-    id 'com.android.library'
-    id 'maven-publish'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 30
@@ -40,11 +38,9 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
-// Configure maven-publish manually
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            // Manually specify AAR artifact
             artifact("$buildDir/outputs/aar/${project.name}-release.aar")
             artifact sourcesJar
             artifact javadocJar
