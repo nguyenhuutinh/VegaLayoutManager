@@ -2,11 +2,11 @@
 
 buildscript {
     repositories {
-        jcenter()
-        google()
+        google() // Use Google's Maven repository
+        mavenCentral() // Use Maven Central instead of JCenter
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:7.0.0' // Update Gradle plugin to a newer version
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -14,7 +14,11 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
-        google()
+        google() // Use Google's Maven repository
+        mavenCentral() // Use Maven Central instead of JCenter
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
