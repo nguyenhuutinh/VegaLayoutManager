@@ -1,14 +1,12 @@
-plugins {
-    id 'com.android.library'
-    id 'maven-publish' // Add this for JitPack publishing
-}
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish' // Keep using maven-publish for JitPack
 
 android {
-    compileSdkVersion 34 // Update to the latest version
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion 16 // Update based on requirements
-        targetSdkVersion 34 // Align with compileSdkVersion
+        minSdkVersion 16
+        targetSdkVersion 34
         versionCode 101
         versionName "1.0.1"
     }
@@ -22,9 +20,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar']) // Replace compile with implementation
-    implementation 'androidx.appcompat:appcompat:1.6.1' // Replace support library with AndroidX
-    implementation 'com.google.android.material:material:1.10.0' // Replace design support with Material Components
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
 }
 
 publishing {
@@ -32,12 +30,9 @@ publishing {
         release(MavenPublication) {
             from components.release
 
-            groupId = 'com.github.nguyenhuutinh' // Use your GitHub username
+            groupId = 'com.github.nguyenhuutinh'
             artifactId = 'VegaLayoutManager'
             version = '1.0.1'
-
-            // Optionally include source and javadoc artifacts
-            artifact("${buildDir}/outputs/aar/${project.name}-release.aar")
         }
     }
 }
