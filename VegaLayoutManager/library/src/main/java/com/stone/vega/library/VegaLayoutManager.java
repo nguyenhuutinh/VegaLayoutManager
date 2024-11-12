@@ -6,6 +6,7 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,9 +37,10 @@ public class VegaLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public void onAdapterChanged(RecyclerView.Adapter<?> oldAdapter, RecyclerView.Adapter<?> newAdapter) {
+    public void onAdapterChanged(@Nullable RecyclerView.Adapter oldAdapter, @Nullable RecyclerView.Adapter newAdapter) {
         super.onAdapterChanged(oldAdapter, newAdapter);
         this.adapter = newAdapter;
+
     }
 
     @Override
@@ -177,5 +179,37 @@ public class VegaLayoutManager extends RecyclerView.LayoutManager {
     @Override
     public void onAttachedToWindow(RecyclerView view) {
         super.onAttachedToWindow(view);
+    }
+
+    public int getSnapHeight() {
+        if (!needSnap) {
+            return 0;
+        }
+        needSnap = false;
+
+        Rect displayRect = new Rect(0, scroll, getWidth(), getHeight() + scroll);
+        int itemCount = getItemCount();
+        for (int i = 0; i < itemCount; i++) {
+            Rect itemRect = locationRects.get(i);
+            if (displayRect.intersect(itemRect)) {
+
+                if (lastDy > 0) {
+                    // scroll变大，属于列表往下走，往下找下一个为snapView
+                    if (i < itemCount - 1) {
+                        Rect nextRect = locationRects.get(i + 1);
+                        return nextRect.top - displayRect.top;
+                    }
+                }
+                return itemRect.top - displayRect.top;
+            }
+        }
+        return 0;
+    }
+
+    public View findSnapView() {
+        if (getChildCount() > 0) {
+            return getChildAt(0);
+        }
+        return null;
     }
 }

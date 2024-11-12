@@ -21,6 +21,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.6.1' // AndroidX replacement for appcompat-v7
     implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
     implementation 'androidx.cardview:cardview:1.0.0' // AndroidX cardview
     implementation project(':library') // No changes here, references your library module
 }
