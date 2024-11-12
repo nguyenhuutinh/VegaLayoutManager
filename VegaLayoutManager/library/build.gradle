@@ -49,29 +49,26 @@ publishing {
             artifactId = 'VegaLayoutManager'
             version = '1.1.0'
 
-            pom {
-                name = "Vega Layout Manager"
-                description = "An advanced layout manager for Android RecyclerView."
-                url = "https://github.com/nguyenhuutinh/VegaLayoutManager"
+            pom.withXml {
+                asNode().appendNode('description', 'An advanced layout manager for Android RecyclerView.')
+                asNode().appendNode('name', 'Vega Layout Manager')
+                asNode().appendNode('url', 'https://github.com/nguyenhuutinh/VegaLayoutManager')
+                
+                def licensesNode = asNode().appendNode('licenses')
+                def licenseNode = licensesNode.appendNode('license')
+                licenseNode.appendNode('name', 'MIT License')
+                licenseNode.appendNode('url', 'https://opensource.org/licenses/MIT')
 
-                licenses {
-                    license {
-                        name = "MIT License"
-                        url = "https://opensource.org/licenses/MIT"
-                    }
-                }
-                developers {
-                    developer {
-                        id = "nguyenhuutinh"
-                        name = "Nguyen Huu Tinh"
-                        email = "developer@example.com"
-                    }
-                }
-                scm {
-                    connection = "scm:git:git://github.com/nguyenhuutinh/VegaLayoutManager.git"
-                    developerConnection = "scm:git:ssh://git@github.com:nguyenhuutinh/VegaLayoutManager.git"
-                    url = "https://github.com/nguyenhuutinh/VegaLayoutManager"
-                }
+                def developersNode = asNode().appendNode('developers')
+                def developerNode = developersNode.appendNode('developer')
+                developerNode.appendNode('id', 'nguyenhuutinh')
+                developerNode.appendNode('name', 'Nguyen Huu Tinh')
+                developerNode.appendNode('email', 'developer@example.com')
+
+                def scmNode = asNode().appendNode('scm')
+                scmNode.appendNode('connection', 'scm:git:git://github.com/nguyenhuutinh/VegaLayoutManager.git')
+                scmNode.appendNode('developerConnection', 'scm:git:ssh://git@github.com:nguyenhuutinh/VegaLayoutManager.git')
+                scmNode.appendNode('url', 'https://github.com/nguyenhuutinh/VegaLayoutManager')
             }
         }
     }
