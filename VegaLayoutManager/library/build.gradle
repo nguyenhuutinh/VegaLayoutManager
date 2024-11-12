@@ -22,9 +22,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 
-// Create sources and Javadoc JARs
+// Tasks for sources and Javadoc jars
 task sourcesJar(type: Jar) {
-    archiveClassifier.set('sources')
+    classifier = 'sources' // Use 'classifier' for Gradle 4.1 compatibility
     from android.sourceSets.main.java.srcDirs
 }
 
@@ -34,7 +34,7 @@ task javadoc(type: Javadoc) {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier.set('javadoc')
+    classifier = 'javadoc' // Use 'classifier' for Gradle 4.1 compatibility
     from javadoc.destinationDir
 }
 
