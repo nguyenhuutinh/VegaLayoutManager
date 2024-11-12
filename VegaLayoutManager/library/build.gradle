@@ -47,7 +47,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.release // Automatically includes the AAR artifact
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
 
             artifact sourcesJar
             artifact javadocJar
